@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+:root {
+  --color-washi: #f7f1e5;
+  --color-paper: #fbf8f1;
+  --color-sumi: #1f1b18;
+  --color-ink-muted: #5f5750;
+  --color-gold: #c9a646;
+  --color-indigo: #243b53;
+  --color-vermilion: #b14a36;
+  --color-line: rgba(31, 27, 24, 0.12);
+  --color-shadow: rgba(31, 27, 24, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  color: var(--color-sumi);
+  background: var(--color-washi);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.title-font {
+  font-family:
+    'Hiragino Mincho ProN',
+    'Yu Mincho',
+    'Noto Serif JP',
+    'Noto Serif',
+    serif;
+}
+
+.body-font,
+body {
+  font-family:
+    'Hiragino Sans',
+    'Noto Sans JP',
+    system-ui,
+    sans-serif;
+}
+
+.zanshin-enso {
+  height: 13px;
+  width: 13px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .title-font {
+    letter-spacing: 0.02em;
+  }
+}
