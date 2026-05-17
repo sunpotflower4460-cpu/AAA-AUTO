@@ -13,7 +13,7 @@
 
 ## Phase 1: 設計整理
 
-**ステータス：** 🟢 実施中
+**ステータス：** ✅ 完了
 
 ### 目的
 
@@ -40,27 +40,28 @@ docs/development-phases.md
 
 ### 完了条件
 
-- [ ] README.md が作成/更新されている
-- [ ] docs/concept.md がある
-- [ ] docs/design-system.md がある
-- [ ] docs/mvp-spec.md がある
-- [ ] docs/development-phases.md がある
-- [ ] .github/copilot-instructions.md がある
-- [ ] Cloudflareへデプロイしていない
-- [ ] MVP実装を開始していない
-- [ ] 「残心」「間」「余白」「現代和」「黄金比」の方針が明記されている
+- [x] README.md が作成/更新されている
+- [x] docs/concept.md がある
+- [x] docs/design-system.md がある
+- [x] docs/mvp-spec.md がある
+- [x] docs/development-phases.md がある
+- [x] .github/copilot-instructions.md がある
+- [x] Cloudflareへデプロイしていない
+- [x] MVP実装を開始していない
+- [x] 「残心」「間」「余白」「現代和」「黄金比」の方針が明記されている
 
 ---
 
 ## Phase 2: 監査
 
-**ステータス：** ⬜ 未着手
+**ステータス：** ✅ 完了
 
 ### 目的
 
 - Phase 1の設計にズレがないか確認する
 - MVP実装前の懸念点を洗い出す
 - 実装に入る前に設計を微修正する
+- 監査対象は README / docs / `.github/copilot-instructions.md` に限定する
 
 ### 作成予定
 
@@ -74,10 +75,17 @@ docs/audit-phase-2.md
 - デザインシステムがMVP仕様に対応できるか
 - 技術スタックの選定に問題がないか
 - ファイル構成の初期案を確認する
+- 実装を始めずに、Phase 3で迷う点だけを取り除く
 
 ### Cloudflareデプロイ
 
 **しない**
+
+### 禁止事項
+
+- MVP実装を開始しない
+- Reactコンポーネントやアプリ本体を作り始めない
+- Cloudflare Pagesへデプロイしない
 
 ---
 
@@ -105,7 +113,7 @@ Vite + React + TypeScript + Tailwind CSS
 | メモ削除 | 確認ダイアログ付き |
 | 自動保存 | デバウンス処理 |
 | 検索 | リアルタイム検索 |
-| お気に入り | トグル・フィルタ |
+| お気に入り | トグル |
 | localStorage保存 | `lib/storage.ts` に分離 |
 | iPhone向けレスポンシブUI | safe-area / viewport 対応 |
 
@@ -134,6 +142,12 @@ src/
 
 **MVP完成後のみ**
 
+### ルール
+
+- このフェーズで初めてMVP実装を行う
+- README / docs にない新機能を勝手に足さない
+- 将来拡張候補をMVPへ混ぜない
+
 ---
 
 ## 将来 Phase 候補
@@ -155,3 +169,4 @@ src/
 2. 機能追加よりも体験の質を優先する
 3. Phase 3完了前にCloudflareへデプロイしない
 4. 新機能追加は、既存の静けさを壊さないか確認してから行う
+5. 将来拡張候補は常にMVP仕様と分離して扱う

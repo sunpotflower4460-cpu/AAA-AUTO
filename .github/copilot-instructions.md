@@ -38,8 +38,10 @@ The goal is to make writing feel **quiet, spacious, and intentional**.
 
 - ✅ Audit the design from Phase 1
 - ✅ Create `docs/audit-phase-2.md`
+- ✅ Limit work to README / docs / `.github/copilot-instructions.md` unless a documentation gap requires a small fix
 - ❌ Do not deploy
 - ❌ Do not overbuild
+- ❌ Do not start MVP implementation or large React component work
 
 ### Phase 3
 
@@ -107,6 +109,9 @@ If a feature makes the app:
 - Not a social app
 - Not a Japanese theme park
 - Not a clone of Notion, Bear, or Obsidian
+- Not an AI assistant inside the notes app
+- Not a login-first or sync-first product
+- Not a billing-focused product
 
 ---
 
