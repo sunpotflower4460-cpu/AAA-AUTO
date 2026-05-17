@@ -10,7 +10,8 @@
 「残心」は、和の美意識・間・余白・静けさを大切にした、シンプルなiOS向けメモアプリです。
 
 大量の機能で埋めるのではなく、  
-書くこと、読み返すこと、書いたあとに残る余韻を美しくすることを目指します。
+書くこと、読み返すこと、書いたあとに残る余韻を美しくすることを目指します。  
+単なる和風メモ帳ではなく、**書く体験の余韻**を静かに残すためのアプリです。
 
 ---
 
@@ -25,9 +26,9 @@
 
 **海外向け**
 
-- Japanese minimalism / Zen / Wabi-sabi
-- Samurai-inspired calm focus
-- Mindful writing / Calm journaling
+- Japanese minimalism / Zen-inspired writing / Wabi-sabi
+- Mindful notes / Calm journaling / Write with stillness
+- 静かな現代和を、海外にも伝わる言葉で補助的に説明する
 
 ---
 
@@ -56,6 +57,7 @@
 - **localStorage / IndexedDB** — MVPはローカル保存から
 - **PWA対応** — ブラウザからでもiOS的体験を
 - **Capacitor（将来）** — ネイティブiOSアプリ化への備え
+- **iPhone-first UI** — iPhone幅・タップしやすさ・キーボード表示時の使いやすさを優先
 
 ---
 
