@@ -1,6 +1,7 @@
 import type { Note } from '../types/note'
 
 const STORAGE_KEY = 'zanshin.notes.v1'
+const canUseStorage = () => typeof window !== 'undefined' && typeof window.localStorage !== 'undefined'
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null
@@ -22,8 +23,12 @@ const isNote = (value: unknown): value is Note => {
 }
 
 export const loadNotes = (): Note[] => {
+  if (!canUseStorage()) {
+    return []
+  }
+
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = window.localStorage.getItem(STORAGE_KEY)
 
     if (!raw) {
       return []
@@ -32,18 +37,34 @@ export const loadNotes = (): Note[] => {
     const parsed: unknown = JSON.parse(raw)
 
     if (!Array.isArray(parsed)) {
+      window.localStorage.removeItem(STORAGE_KEY)
       return []
     }
 
-    return parsed.filter(isNote)
+    const validNotes = parsed.filter(isNote)
+
+    if (validNotes.length !== parsed.length) {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(validNotes))
+    }
+
+    return validNotes
   } catch {
+    try {
+      window.localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      // ignore cleanup failures
+    }
     return []
   }
 }
 
 export const saveNotes = (notes: Note[]): void => {
+  if (!canUseStorage()) {
+    return
+  }
+
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
   } catch {
     // ignore write failures in MVP
   }

@@ -32,6 +32,7 @@ export const NotesList = ({
   onToggleFavorite,
 }: NotesListProps) => {
   const normalizedQuery = searchQuery.trim().toLowerCase()
+  const isSearchActive = normalizedQuery.length > 0
 
   const filtered = sortNotes(
     notes.filter((note) =>
@@ -40,7 +41,7 @@ export const NotesList = ({
   )
 
   return (
-    <section className="relative flex min-h-[calc(100svh-42px)] flex-col px-[21px] pb-[89px] pt-[34px]">
+    <section className="relative flex min-h-[calc(100svh-42px)] flex-col px-[21px] pb-[89px] pt-[21px] sm:pt-[34px]">
       <header>
         <p className="title-font text-[21px] tracking-[0.03em]">{copy.appName}</p>
         <p className="mt-[4px] text-[13px] text-[var(--color-ink-muted)]">{copy.appSubtitle}</p>
@@ -65,7 +66,11 @@ export const NotesList = ({
             />
           ))
         ) : (
-          <EmptyState onCreate={onCreate} />
+          <EmptyState
+            onCreate={onCreate}
+            isSearchEmpty={isSearchActive}
+            onClearSearch={isSearchActive ? () => onSearchChange('') : undefined}
+          />
         )}
       </div>
 
