@@ -13,8 +13,14 @@ export const NoteCard = ({ note, onOpen, onToggleFavorite }: NoteCardProps) => {
   const preview = note.body.trim() || '…'
 
   return (
-    <article className="group relative rounded-[8px] border border-[var(--color-line)] bg-white p-[21px] shadow-[0_4px_13px_var(--color-shadow)] transition hover:-translate-y-[1px]">
-      <span className="absolute inset-y-[13px] left-[8px] w-px bg-[var(--color-indigo)]/35" aria-hidden="true" />
+    <article className="animate-fade-slide group relative overflow-hidden rounded-[10px] border border-[var(--color-line)] bg-[var(--color-card-bg)] shadow-[0_1px_4px_var(--color-shadow)] transition-all duration-300 hover:border-[var(--color-indigo)]/20 hover:shadow-[0_3px_12px_var(--color-shadow)]">
+      {/* left brush-stroke accent */}
+      <span
+        className="absolute inset-y-0 left-0 w-[3px] rounded-l-[10px] bg-gradient-to-b from-transparent via-[var(--color-indigo)]/30 to-transparent transition-opacity duration-300 group-hover:opacity-70"
+        aria-hidden="true"
+      />
+
+      {/* favorite badge */}
       <button
         type="button"
         aria-label={`${copy.favorite} ${title}`}
@@ -22,21 +28,26 @@ export const NoteCard = ({ note, onOpen, onToggleFavorite }: NoteCardProps) => {
           event.stopPropagation()
           onToggleFavorite(note.id)
         }}
-        className="absolute right-[13px] top-[13px] flex min-h-11 min-w-11 items-center justify-center rounded-full text-[18px] leading-none text-[var(--color-gold)] transition hover:bg-[var(--color-gold)]/10"
+        className={`absolute right-[10px] top-[12px] flex min-h-10 min-w-10 items-center justify-center rounded-full text-[17px] leading-none transition-all duration-200 hover:scale-110 active:scale-95 ${
+          note.isFavorite
+            ? 'text-[var(--color-gold)]'
+            : 'text-[var(--color-ink-muted)] opacity-40 hover:opacity-70'
+        }`}
       >
-        {note.isFavorite ? '●' : '○'}
+        {note.isFavorite ? '★' : '☆'}
       </button>
+
       <button
         type="button"
         aria-label={title}
         onClick={() => onOpen(note.id)}
-        className="w-full text-left"
+        className="w-full px-[21px] py-[18px] text-left"
       >
-        <h3 className="pr-[55px] text-[17px] leading-snug">{title}</h3>
-        <p className="mt-[8px] line-clamp-2 min-h-[42px] text-[15px] leading-[1.618] text-[var(--color-ink-muted)]">
+        <h3 className="pr-[44px] text-[16px] font-medium leading-snug tracking-[0.01em]">{title}</h3>
+        <p className="mt-[6px] line-clamp-2 min-h-[40px] text-[14px] leading-[1.7] text-[var(--color-ink-muted)]">
           {preview}
         </p>
-        <p className="mt-[13px] text-[13px] text-[var(--color-ink-muted)]">
+        <p className="mt-[10px] text-[12px] tracking-[0.02em] text-[var(--color-ink-muted)] opacity-60">
           {formatUpdatedAt(note.updatedAt, note.locale ?? 'ja')}
         </p>
       </button>
