@@ -43,7 +43,7 @@ export const NotesList = ({
   return (
     <section className="relative flex min-h-[calc(100svh-42px)] flex-col px-[21px] pb-[89px] pt-[34px] sm:px-[34px] sm:pt-[55px]">
       <header className="animate-fade-slide">
-        <p className="title-font text-[38px] font-light tracking-[0.06em] leading-none text-[var(--color-sumi)] sm:text-[44px]">
+        <p className="title-font text-[34px] font-light tracking-[0.06em] leading-none text-[var(--color-sumi)] sm:text-[55px]">
           {copy.appName}
         </p>
         <p className="mt-[8px] text-[11px] tracking-[0.18em] uppercase text-[var(--color-ink-muted)] opacity-70">

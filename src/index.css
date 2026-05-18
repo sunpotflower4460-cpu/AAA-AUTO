@@ -12,6 +12,9 @@
   --color-line: rgba(31, 27, 24, 0.10);
   --color-shadow: rgba(31, 27, 24, 0.06);
   --color-card-bg: rgba(253, 250, 244, 0.95);
+  /* shared paper grain pattern — used by body and .paper-grain */
+  --grain-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  --grain-size: 300px 300px;
 }
 
 * {
@@ -28,11 +31,17 @@ body,
 body {
   color: var(--color-sumi);
   background-color: var(--color-washi);
-  /* subtle washi paper grain using SVG noise pattern */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
-  background-size: 300px 300px;
+  background-image: var(--grain-bg);
+  background-size: var(--grain-size);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Reusable paper grain overlay — apply on top of card surfaces */
+.paper-grain {
+  background-image: var(--grain-bg);
+  background-size: var(--grain-size);
+  opacity: 0.025;
 }
 
 .title-font {
