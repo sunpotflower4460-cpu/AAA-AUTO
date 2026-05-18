@@ -1,15 +1,20 @@
 @import 'tailwindcss';
 
 :root {
-  --color-washi: #f7f1e5;
-  --color-paper: #fbf8f1;
+  --color-washi: #f5efe2;
+  --color-paper: #faf7f0;
   --color-sumi: #1f1b18;
-  --color-ink-muted: #5f5750;
-  --color-gold: #c9a646;
+  --color-ink-muted: #6b6057;
+  --color-gold: #b8943e;
+  --color-gold-light: #d4aa55;
   --color-indigo: #243b53;
   --color-vermilion: #b14a36;
-  --color-line: rgba(31, 27, 24, 0.12);
-  --color-shadow: rgba(31, 27, 24, 0.08);
+  --color-line: rgba(31, 27, 24, 0.10);
+  --color-shadow: rgba(31, 27, 24, 0.06);
+  --color-card-bg: rgba(253, 250, 244, 0.95);
+  /* shared paper grain pattern — used by body and .paper-grain */
+  --grain-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  --grain-size: 300px 300px;
 }
 
 * {
@@ -25,9 +30,18 @@ body,
 
 body {
   color: var(--color-sumi);
-  background: var(--color-washi);
+  background-color: var(--color-washi);
+  background-image: var(--grain-bg);
+  background-size: var(--grain-size);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Reusable paper grain overlay — apply on top of card surfaces */
+.paper-grain {
+  background-image: var(--grain-bg);
+  background-size: var(--grain-size);
+  opacity: 0.025;
 }
 
 .title-font {
@@ -48,11 +62,67 @@ body {
     sans-serif;
 }
 
+/* Enso circle mark */
 .zanshin-enso {
-  height: 13px;
-  width: 13px;
-  border: 1px solid var(--color-line);
+  height: 14px;
+  width: 14px;
+  border: 1.5px solid currentColor;
   border-radius: 999px;
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+/* ── Animations ────────────────────────────────── */
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.animate-fade-slide {
+  animation: fadeSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-scale-in {
+  animation: scaleFadeIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Staggered card entrances */
+.animate-fade-slide:nth-child(1)  { animation-delay:   0ms; }
+.animate-fade-slide:nth-child(2)  { animation-delay:  45ms; }
+.animate-fade-slide:nth-child(3)  { animation-delay:  90ms; }
+.animate-fade-slide:nth-child(4)  { animation-delay: 135ms; }
+.animate-fade-slide:nth-child(5)  { animation-delay: 180ms; }
+.animate-fade-slide:nth-child(6)  { animation-delay: 220ms; }
+.animate-fade-slide:nth-child(7)  { animation-delay: 260ms; }
+.animate-fade-slide:nth-child(8)  { animation-delay: 290ms; }
+.animate-fade-slide:nth-child(n+9) { animation-delay: 310ms; }
+
+/* Save indicator pulse */
+.saving-pulse {
+  animation: gentlePulse 1.2s ease-in-out infinite;
 }
 
 @media (max-width: 640px) {

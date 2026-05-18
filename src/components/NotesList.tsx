@@ -41,21 +41,30 @@ export const NotesList = ({
   )
 
   return (
-    <section className="relative flex min-h-[calc(100svh-42px)] flex-col px-[21px] pb-[89px] pt-[21px] sm:pt-[34px]">
-      <header>
-        <p className="title-font text-[21px] tracking-[0.03em]">{copy.appName}</p>
-        <p className="mt-[4px] text-[13px] text-[var(--color-ink-muted)]">{copy.appSubtitle}</p>
-        <p className="mt-[13px] text-[15px] leading-[1.618] text-[var(--color-sumi)]">{copy.tagline}</p>
-        <div className="mt-[8px]">
+    <section className="relative flex min-h-[calc(100svh-42px)] flex-col px-[21px] pb-[89px] pt-[34px] sm:px-[34px] sm:pt-[55px]">
+      <header className="animate-fade-slide">
+        <p className="title-font text-[34px] font-light tracking-[0.06em] leading-none text-[var(--color-sumi)] sm:text-[55px]">
+          {copy.appName}
+        </p>
+        <p className="mt-[8px] text-[11px] tracking-[0.18em] uppercase text-[var(--color-ink-muted)] opacity-70">
+          {copy.appSubtitle}
+        </p>
+
+        <div className="mt-[21px] h-px w-[55px] bg-gradient-to-r from-[var(--color-indigo)]/30 to-transparent" />
+
+        <p className="mt-[13px] text-[14px] leading-[1.75] text-[var(--color-ink-muted)] italic">
+          {copy.tagline}
+        </p>
+        <div className="mt-[10px]">
           <ZanshinMark />
         </div>
       </header>
 
-      <div className="mt-[34px]">
+      <div className="mt-[34px] animate-fade-slide" style={{ animationDelay: '60ms' }}>
         <SearchBar value={searchQuery} onChange={onSearchChange} />
       </div>
 
-      <div className="mt-[21px] flex-1 space-y-[13px]">
+      <div className="mt-[21px] flex-1 space-y-[10px]">
         {filtered.length > 0 ? (
           filtered.map((note) => (
             <NoteCard
@@ -78,7 +87,7 @@ export const NotesList = ({
         type="button"
         aria-label={copy.newNote}
         onClick={onCreate}
-        className="fixed bottom-[max(21px,env(safe-area-inset-bottom))] right-[21px] z-10 flex h-[55px] w-[55px] items-center justify-center rounded-full border border-[var(--color-line)] bg-[var(--color-sumi)] text-[26px] text-[var(--color-washi)] shadow-[0_8px_21px_var(--color-shadow)] transition hover:scale-[1.02]"
+        className="fixed bottom-[max(21px,env(safe-area-inset-bottom))] right-[21px] z-10 flex h-[55px] w-[55px] items-center justify-center rounded-full bg-[var(--color-sumi)] text-[24px] text-[var(--color-washi)] shadow-[0_4px_16px_rgba(31,27,24,0.22)] transition-all duration-300 hover:scale-[1.06] hover:shadow-[0_6px_24px_rgba(31,27,24,0.28)] active:scale-[0.97]"
       >
         ＋
       </button>
